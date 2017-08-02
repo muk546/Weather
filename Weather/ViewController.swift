@@ -13,6 +13,33 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+
+        var names = [String]()
+        
+        do {
+            if let data = data,
+                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                let blogs = json["blogs"] as? [[String: Any]] {
+                for blog in blogs {
+                    if let name = blog["name"] as? String {
+                        names.append(name)
+                    }
+                }
+            }
+        } catch {
+            print("Error deserializing JSON: \(error)")
+        }
+        
+        print(names)
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
